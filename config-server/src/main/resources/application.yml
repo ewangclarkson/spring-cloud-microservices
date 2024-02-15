@@ -3,7 +3,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/ewangclarkson/spring-cloud-microservices/configs
+          uri: https://github.com/ewangclarkson/spring-cloud-microservices/config-properties
 server:
   port: 8088
 
