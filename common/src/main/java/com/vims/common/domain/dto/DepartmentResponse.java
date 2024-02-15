@@ -1,4 +1,4 @@
-package com.vims.departmentservice.dto;
+package com.vims.common.domain.dto;
 
 
 import lombok.Builder;

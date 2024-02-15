@@ -2,7 +2,7 @@ package com.vims.departmentservice.domain.service;
 
 import com.vims.departmentservice.domain.model.Department;
 import com.vims.departmentservice.dto.DepartmentRequest;
-import com.vims.departmentservice.dto.DepartmentResponse;
+import com.vims.common.domain.dto.DepartmentResponse;
 import com.vims.departmentservice.exceptions.DepartmentAlreadyExistException;
 import com.vims.departmentservice.exceptions.DepartmentNotFoundException;
 import com.vims.departmentservice.repository.DepartmentRepository;

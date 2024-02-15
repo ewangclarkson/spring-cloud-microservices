@@ -2,9 +2,8 @@ package com.vims.departmentservice.controller;
 
 
 import com.vims.departmentservice.dto.DepartmentRequest;
-import com.vims.departmentservice.dto.DepartmentResponse;
+import com.vims.common.domain.dto.DepartmentResponse;
 import com.vims.departmentservice.service.DepartmentService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

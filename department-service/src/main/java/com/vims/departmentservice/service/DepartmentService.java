@@ -1,7 +1,7 @@
 package com.vims.departmentservice.service;
 
 import com.vims.departmentservice.dto.DepartmentRequest;
-import com.vims.departmentservice.dto.DepartmentResponse;
+import com.vims.common.domain.dto.DepartmentResponse;
 
 import java.util.List;
 
