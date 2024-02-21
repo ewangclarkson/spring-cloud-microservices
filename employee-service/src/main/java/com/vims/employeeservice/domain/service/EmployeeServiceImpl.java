@@ -1,12 +1,12 @@
 package com.vims.employeeservice.domain.service;
 
 import com.vims.common.domain.dto.DepartmentResponse;
+import com.vims.common.domain.exceptions.ResourceAlreadyExistException;
+import com.vims.common.domain.exceptions.ResourceNotFoundException;
 import com.vims.employeeservice.client.DepartmentClient;
 import com.vims.employeeservice.domain.model.Employee;
 import com.vims.employeeservice.dto.EmployeeRequest;
 import com.vims.employeeservice.dto.EmployeeResponse;
-import com.vims.employeeservice.exceptions.EmployeeAlreadyExistException;
-import com.vims.employeeservice.exceptions.EmployeeNotFoundException;
 import com.vims.employeeservice.repository.EmployeeRepository;
 import com.vims.employeeservice.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeResponse getEmployeeById(Long id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException(String.format("The employee with id %d could not be found", id)));
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("The employee with id %d could not be found", id)));
 
 
         return mapToEmployeeResponse(employee, getDepartment(employee.getDepartmentId()));
@@ -34,7 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeResponse createEmployee(EmployeeRequest employee) {
         if (employeeRepository.existsByName(employee.getName())) {
-            throw new EmployeeAlreadyExistException(String.format("The employee with name %s already exist in our system", employee.getName()));
+            throw new ResourceAlreadyExistException(String.format("The employee with name %s already exist in our system", employee.getName()));
         }
 
         return mapToEmployeeResponse(employeeRepository.save(Employee

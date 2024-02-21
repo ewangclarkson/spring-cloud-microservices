@@ -3,8 +3,8 @@ package com.vims.departmentservice.domain.service;
 import com.vims.departmentservice.domain.model.Department;
 import com.vims.departmentservice.dto.DepartmentRequest;
 import com.vims.common.domain.dto.DepartmentResponse;
-import com.vims.departmentservice.exceptions.DepartmentAlreadyExistException;
-import com.vims.departmentservice.exceptions.DepartmentNotFoundException;
+import com.vims.common.domain.exceptions.ResourceAlreadyExistException;
+import com.vims.common.domain.exceptions.ResourceNotFoundException;
 import com.vims.departmentservice.repository.DepartmentRepository;
 import com.vims.departmentservice.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public DepartmentResponse createDepartment(DepartmentRequest department) {
         if (departmentRepository.existsByDepartmentName(department.getName())) {
             log.error(String.format("The department with name %s already exist", department.getName()));
-            throw new DepartmentAlreadyExistException(String.format("The department with name %s already exist", department.getName()));
+            throw new ResourceAlreadyExistException(String.format("The department with name %s already exist", department.getName()));
         }
         return mapToDeparmentResponse(departmentRepository.save(Department.builder().departmentName(department.getName()).build()));
     }
@@ -41,7 +41,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public DepartmentResponse getDepartmentById(Long id) {
         Department department = departmentRepository.findById(id)
-                .orElseThrow(() -> new DepartmentNotFoundException(String.format("The department with id %d could not be found", id)));
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("The department with id %d could not be found", id)));
 
         return mapToDeparmentResponse(department);
     }
